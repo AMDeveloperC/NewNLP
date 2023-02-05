@@ -13,12 +13,13 @@ import pprint
 
 class NewNlp:
     def __del__(self):
-        print("End")
+        pass
 
     def __init__(self):
         self.documents_words_list = []
         self.documents_file_names = []
         self.texts = []
+        self.labels = []
         self.en_stop_words = get_stop_words('en')
 
     def extract_documents_and_words(self, input_path):
@@ -34,7 +35,6 @@ class NewNlp:
             self.documents_file_names.sort()
         for document in self.documents_file_names:
             with codecs.open(str(input_path) + str(document), encoding = 'latin-1') as file_handler:
-                #print(str(input_path) + str(document))
                 for line in file_handler:
                     content = content + line
                     for i in ",][)(}{":
@@ -42,6 +42,14 @@ class NewNlp:
                 self.documents_words_list.append(content)
                 content = ""
         return self.documents_file_names
+    
+    def extract_labels_for_supervised_learning(self):
+        self.documents_file_names.sort()
+        i = 0
+        while(i < len(self.documents_file_names)):
+            self.labels.append(""+str(self.documents_file_names[i].split("_")[0]))
+            i = i + 1
+        return self.labels
 
     def load_stop_words(self, stop_words_file):
         """

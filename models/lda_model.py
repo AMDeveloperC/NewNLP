@@ -5,7 +5,7 @@ import pprint
 
 class LDA_Model:
     def __del__(self):
-        print("LDA ending")
+        pass
 
     def __init__(self, texts):
         self.texts = texts
@@ -16,8 +16,8 @@ class LDA_Model:
         self.corpus = corpus
 
     def train_model(self):
-        self.lda_model = models.LdaModel(self.corpus, id2word=self.dictionary, num_topics=4, update_every=3, chunksize=10, passes=1)
-        self.topics = self.lda_model.print_topics(num_topics=4, num_words=10)
+        self.lda_model = models.LdaModel(self.corpus, id2word = self.dictionary, num_topics = 4, update_every = 3, chunksize = 10, passes = 1)
+        self.topics = self.lda_model.print_topics(num_topics = 4, num_words = 10)
         self.l_corpus = self.lda_model[self.corpus]
         return self.lda_model, self.l_corpus, self.dictionary, self.topics
 

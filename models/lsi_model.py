@@ -4,7 +4,7 @@ import pprint
 
 class LSI_Model:
     def __del__(self):
-        print("LSI ending")
+        pass
 
     def __init__(self, texts):
         self.texts = texts

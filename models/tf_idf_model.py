@@ -5,7 +5,7 @@ import pprint
 
 class TfIdf_Model:
     def __del__(self):
-        print("TfIdf ending")
+        pass
 
     def __init__(self, texts):
         self.texts = texts
@@ -16,7 +16,7 @@ class TfIdf_Model:
         self.corpus = corpus
 
     def train_model(self):
-        self.tfIdf = models.TfidfModel(self.corpus, dictionary=self.dictionary, normalize=True)
+        self.tfIdf = models.TfidfModel(self.corpus, dictionary = self.dictionary, normalize=True)
         self.t_corpus = self.tfIdf[self.corpus]
         return self.tfIdf, self.t_corpus, self.dictionary
     
