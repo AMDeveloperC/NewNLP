@@ -1,7 +1,5 @@
 from gensim import models
 from gensim import corpora
-import pprint
-
 
 class LDA_Model:
     def __del__(self):

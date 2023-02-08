@@ -1,10 +1,10 @@
-from preprocessing.nlp import NewNlp
+from preprocessing.pre_processor import PreProcessor
 from models.lsi_model import LSI_Model
 from models.tf_idf_model import TfIdf_Model
 from similarities.similarity_processor import SimilarityProcessor
 
 def compute_models():
-    nlp = NewNlp()
+    nlp = PreProcessor()
     documents_name = nlp.extract_documents_and_words("./docs/")
     clean_corpus = nlp.preprocessing()
 

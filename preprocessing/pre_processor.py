@@ -11,7 +11,7 @@ import pprint
 # https://www.datacamp.com/tutorial/discovering-hidden-topics-python
 # https://goodboychan.github.io/python/datacamp/natural_language_processing/2020/07/17/04-TF-IDF-and-similarity-scores.html
 
-class NewNlp:
+class PreProcessor:
     def __del__(self):
         pass
 
@@ -50,6 +50,16 @@ class NewNlp:
             self.labels.append(""+str(self.documents_file_names[i].split("_")[0]))
             i = i + 1
         return self.labels
+
+    def extract_features_for_supervised_learning(self, dictionary):
+        """
+        Input  : the dictionary created with gensim
+        Purpose: extract the elements and convert to a tuple
+        """
+        nums = []
+        for i in range(len(dictionary)):
+            nums.append(dictionary[i])
+        return tuple(nums)
 
     def load_stop_words(self, stop_words_file):
         """
