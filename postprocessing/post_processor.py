@@ -7,14 +7,14 @@ class Post_processor:
     def __del__(self):
         pass
 
-    def print_top_similar_vector(self):
-        with open("output.txt", "w+") as handler_file:
+    def save_top_similar_vector(self, output_file_name):
+        with open(output_file_name, "w+") as handler_file:
             for doc_id in self.documents_id:
                 handler_file.writelines(self.clean_corpus[doc_id])
                 handler_file.write("\n")
     
-    def print_top_similar_docs(self):
-        with open("output.txt", "w+") as handler_file:
+    def save_top_similar_docs(self, output_file_name):
+        with open(output_file_name, "w+") as handler_file:
             for doc_id in self.documents_id:
                 handler_file.writelines(self.documents_name[doc_id])
                 handler_file.write("\n")

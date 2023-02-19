@@ -34,3 +34,11 @@ class SupervisedLearning:
     def add_a_new_feature(self, labels):
         self.m_dataset = np.concatenate([np.asarray(labels), self.m_dataset], 1)
         return self.m_dataset
+
+    def eliminate_empty_strings(self):
+        blanks = []
+        for i, lb, rv in self.data_frame.itertuples():
+            if (rv.isspace()):
+                blanks.append(i)
+        self.data_frame.drop(blanks, inplace = True)
+        return self.data_frame
