@@ -21,3 +21,8 @@ class SimilarityProcessor:
         for document_number, score in sorted(enumerate(sims), key = lambda x: x[1], reverse = True):
             documents_id.append(document_number)
         return sims, documents_id
+
+    def print_relations(self):
+        for i in range(len(self.corpus)):
+            for j in range(len(self.corpus[i])):
+                print("The doc " + str(i) + " has bearing " + str(self.corpus[i][j][1]) + " with " + str(self.dictionary[j]))
