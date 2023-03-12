@@ -6,15 +6,16 @@ class LSI_Model:
     def __del__(self):
         pass
 
-    def __init__(self, texts):
+    def __init__(self, texts: list) -> None:
         self.texts = texts
         self.dictionary = corpora.Dictionary(self.texts)
         self.corpus = [self.dictionary.doc2bow(text) for text in self.texts]
 
-    def set_corpus(self, corpus):
+    def set_corpus(self, corpus) -> None:
+        print(type(corpus))
         self.corpus = corpus
 
-    def train_model(self):
+    def train_model(self) -> list:
         self.lsi_model = models.LsiModel(self.corpus)
         self.l_corpus = self.lsi_model[self.corpus]
         return self.lsi_model, self.l_corpus, self.dictionary

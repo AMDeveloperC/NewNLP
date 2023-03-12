@@ -22,7 +22,7 @@ class PreProcessor:
         self.labels = []
         self.en_stop_words = get_stop_words('en')
 
-    def extract_documents_and_words(self, input_path):
+    def extract_documents_and_words(self, input_path: str) -> list:
         """
         Input  : the path on file system containing the documents to use
         Purpose: prepare a list of strings where each string corresponds to a document
@@ -43,7 +43,7 @@ class PreProcessor:
                 content = ""
         return self.documents_file_names
     
-    def extract_labels_for_supervised_learning(self):
+    def extract_labels_for_supervised_learning(self) -> list:
         self.documents_file_names.sort()
         i = 0
         while(i < len(self.documents_file_names)):
@@ -51,7 +51,7 @@ class PreProcessor:
             i = i + 1
         return self.labels
 
-    def extract_features_for_supervised_learning(self, dictionary):
+    def extract_features_for_supervised_learning(self, dictionary: dict) -> tuple:
         """
         Input  : the dictionary created with gensim
         Purpose: extract the elements and convert to a tuple
@@ -61,7 +61,7 @@ class PreProcessor:
             nums.append(dictionary[i])
         return tuple(nums)
 
-    def load_stop_words(self, stop_words_file):
+    def load_stop_words(self, stop_words_file: str) -> None:
         """
         Input  : a file containing one string per line
         Purpose: add new stop words
@@ -72,7 +72,7 @@ class PreProcessor:
                 words = line.split()
         self.en_stop_words = self.en_stop_words + words
 
-    def stop_words_removal_and_stemming(self):
+    def stop_words_removal_and_stemming(self) -> None:
         """
         Purpose: execute stop words removal and stemming
         Output : a collection of words list (one per document)
@@ -86,7 +86,7 @@ class PreProcessor:
             stemmed_tokens = [p_stemmer.stem(t) for t in stopped_tokens]
             self.texts.append(stemmed_tokens)
 
-    def remove_words_only_once_appearing(self):
+    def remove_words_only_once_appearing(self) -> None:
         """
         Purpose: remove low frequency words
         Output : updates the collection of words list
@@ -97,14 +97,14 @@ class PreProcessor:
                 frequency[token] += 1
         self.texts = [[token for token in text if frequency[token] > 1] for text in self.texts]
 
-    def remove_shortest_words(self):
+    def remove_shortest_words(self) -> None:
         """
         Purpose: remove words shorter than 3 characters
         Output : updates the collection of words list
         """
         self.texts = [[token for token in text if len(token) > 3] for text in self.texts]
 
-    def preprocessing(self):
+    def preprocessing(self) -> list:
         self.remove_words_only_once_appearing()
         self.stop_words_removal_and_stemming()
         self.remove_shortest_words()
