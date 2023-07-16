@@ -10,3 +10,5 @@ Assuming you have a folder called "docs" with some text documents which you want
 python3 unsupervised_driver.py ./docs/ "algorithm method" output.txt
 
 And open the file "output.txt" to see the documents sorted by relevance.
+
+Also, you can replace the input corpus by using wathever you want (there are many free to download dataset online!) and play with your queries.
